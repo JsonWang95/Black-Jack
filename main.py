@@ -16,6 +16,76 @@
 ## The cards in the list have equal probability of being drawn.
 ## Cards are not removed from the deck as they are drawn.
 ## The computer is the dealer.
+from art import logo
+import random
+
+cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+
+def computer_play(array):
+  while sum(array) < 17:
+    array.append(random.choice(cards))
+
+  return array
+
+def playBJ():
+  user_choice = input("Do you want to play a game of Blackjack? Type 'y' or 'n': ")
+  play = False
+  should_continue = False
+
+  if user_choice == 'y':
+    play = True
+
+  while play:
+    print(logo)
+    
+    player_hand = [random.choice(cards), random.choice(cards)]
+    computer_hand = [random.choice(cards), random.choice(cards)]
+
+    current_score = sum(player_hand)
+
+    print(f"  Your cards: {player_hand}, current score: {current_score}")
+    print(f"  Computer's first card: {computer_hand[0]}")
+
+    hit = input("Type 'y' to get another card, type 'n' to pass: ")
+
+    if hit == 'y':
+      should_continue = True
+
+    while should_continue == True:
+      player_hand.append(random.choice(cards))
+      current_score = sum(player_hand)
+
+      if current_score > 21:
+        print(f"  Your final hand: {player_hand}, final score: {current_score}")
+
+        computer_hand = computer_play(computer_hand)
+        computer_score = sum(computer_hand)
+
+        print(f"Computer's final hand: {computer_hand}, final score: {computer_score}")
+      
+      print(f"  Your cards: {player_hand}, current score: {current_score}")
+      print(f"  Computer's first card: {computer_hand[0]}")
+      
+      hit = input("Type 'y' to get another card, type 'n' to pass: ")
+
+      if hit == 'n':
+        should_continue = False
+
+
+
+
+    #while sum(player_hand) <= 21:
+
+playBJ()
+    
+
+
+
+
+
+
+
+
 
 ##################### Hints #####################
 
